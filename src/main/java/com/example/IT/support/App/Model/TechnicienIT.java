@@ -1,5 +1,6 @@
 package com.example.IT.support.App.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class TechnicienIT extends Person{
-    @OneToMany(mappedBy = "technicien")
+    @OneToMany(mappedBy = "technicienIT")
+    @JsonIgnore
     private List<TicketOfSupport> ticketOfSupports;
 }

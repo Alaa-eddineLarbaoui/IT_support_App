@@ -1,5 +1,7 @@
 package com.example.IT.support.App.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -13,13 +15,17 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity@DiscriminatorValue("USER")
 public class User extends Person{
     @OneToMany
-    private List<Panne> pannes;
+    private  List<Panne> pannes;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<TicketOfSupport> ticketOfSupports;
+
+
+
 
 
 }

@@ -18,12 +18,26 @@ public class TicketOfSupport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_Ticket;
+
+    @Column
     private Date creation_date;
+
+    @Column
     private String description;
 
+    @Column
     @Enumerated(EnumType.STRING)
     private EtatTicket etatTicket;
 
+    @ManyToOne
+    @JoinColumn(name = "technicien_id")
+    private TechnicienIT technicienIT;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
+    @OneToOne
+    @JoinColumn(name = "panne_id")
+    private Panne panne;
 }
