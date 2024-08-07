@@ -37,12 +37,11 @@ public class TicketOfSupport {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "panne_id")
     private Panne panne;
 
-    @OneToOne
-    @JoinColumn(name = "equipement_id")
-    private Equipement equipement;
+
+
 
 }

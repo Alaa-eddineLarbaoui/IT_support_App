@@ -1,7 +1,6 @@
 package com.example.IT.support.App.Model;
 
 import com.example.IT.support.App.Enum.EtatPanne;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,6 +10,7 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -37,8 +37,11 @@ public class Panne {
 //    @JoinColumn(name = "equipement_id")
 //    private Equipement equipement;
 
-    @OneToOne(mappedBy = "panne")
-    private TicketOfSupport ticketOfSupport;
+    @OneToMany(mappedBy = "panne")
+    @JsonIgnore
+    private List<TicketOfSupport> ticketsOfSupport;
+
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
