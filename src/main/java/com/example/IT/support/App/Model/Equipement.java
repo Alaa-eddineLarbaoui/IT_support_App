@@ -1,6 +1,7 @@
 package com.example.IT.support.App.Model;
 
 
+import com.example.IT.support.App.Enum.EquipementStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,7 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,8 +26,10 @@ public class Equipement {
     private String name;
     @Column
     private String type;
+
     @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private EquipementStatus status;
     @Column
     private Date purchase_Date;
     @Column
@@ -37,9 +41,13 @@ public class Equipement {
     private User user;
 
 
-    @OneToMany(mappedBy = "equipement")
-    private List<Panne> pannes;
+//    @OneToMany(mappedBy = "equipement")
+//    private List<Panne> pannes;
 
+
+    @ManyToMany(mappedBy = "equipments")
+    @JsonIgnore
+    private Set<Panne> pannes = new HashSet<>();
 
 
 }

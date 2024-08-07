@@ -1,6 +1,7 @@
 package com.example.IT.support.App.Model;
 
 import com.example.IT.support.App.Enum.EtatPanne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -30,9 +33,9 @@ public class Panne {
     @Enumerated(EnumType.STRING)
     private EtatPanne etatPanne;
 
-    @ManyToOne
-    @JoinColumn(name = "equipement_id")
-    private Equipement equipement;
+//    @ManyToOne
+//    @JoinColumn(name = "equipement_id")
+//    private Equipement equipement;
 
     @OneToOne(mappedBy = "panne")
     private TicketOfSupport ticketOfSupport;
@@ -40,4 +43,14 @@ public class Panne {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(
+            name = "panne_equipement",
+            joinColumns = @JoinColumn(name = "panne_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipement_id")
+    )
+    private Set<Equipement> equipments = new HashSet<>();
+    //private Set<Equipement> equipments = new HashSet<>();
 }

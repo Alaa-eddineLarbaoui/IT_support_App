@@ -40,4 +40,9 @@ public class TicketOfSupport {
     @OneToOne
     @JoinColumn(name = "panne_id")
     private Panne panne;
+
+    @OneToOne
+    @JoinColumn(name = "equipement_id")
+    private Equipement equipement;
+
 }
