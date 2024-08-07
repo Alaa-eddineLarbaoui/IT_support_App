@@ -15,8 +15,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity@DiscriminatorValue("USER")
+@Entity
+@DiscriminatorValue("USER")
 public class User extends Person{
+
+
     @OneToMany
     private  List<Panne> pannes;
 
