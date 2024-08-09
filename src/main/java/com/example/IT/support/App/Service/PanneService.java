@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class PanneService {
@@ -27,7 +28,7 @@ public class PanneService {
         if (equipement == null) {
             throw new RuntimeException("Équipement non trouvé.");
         }
-       //panne.setEquipments(equipement);
+       panne.setEquipments((Set<Equipement>) equipement);
         return panneRepository.save(panne);
     }
 
