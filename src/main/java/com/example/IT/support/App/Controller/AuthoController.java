@@ -4,7 +4,9 @@ import com.example.IT.support.App.Config.JwtAuth;
 import com.example.IT.support.App.Enum.Erole;
 import com.example.IT.support.App.Model.Person;
 import com.example.IT.support.App.Repository.PersoneRepository;
+import com.example.IT.support.App.Service.UserService;
 import com.example.IT.support.App.dto.LoginPersonDto;
+import com.example.IT.support.App.dto.SingUpDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +25,9 @@ public class AuthoController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private PersoneRepository personeRepository;
+
+    @Autowired
+    private UserService userService;
 
 
 //    @PostMapping("/signup")
@@ -58,4 +63,11 @@ public class AuthoController {
         response.put("token", token);
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/signup")
+    public ResponseEntity<String> signup(@RequestBody SingUpDto singUpDto){
+        return ResponseEntity.ok(userService.register(singUpDto));
+    }
+
+
 }

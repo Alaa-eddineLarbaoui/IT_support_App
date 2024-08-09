@@ -36,9 +36,9 @@ public class Equipement {
     private String description;
 
 
-    @ManyToOne
-    @JoinColumn(name= "userId")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name= "userId")
+//    private User user;
 
 
 //    @OneToMany(mappedBy = "equipement")
