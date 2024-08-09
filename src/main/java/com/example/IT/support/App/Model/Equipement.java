@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -36,13 +37,18 @@ public class Equipement {
     private String description;
 
 
-//    @ManyToOne
-//    @JoinColumn(name= "userId")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name= "userId")
+    private User user;
 
 
 //    @OneToMany(mappedBy = "equipement")
 //    private List<Panne> pannes;
+
+
+    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<TicketOfSupport> ticketOfSupports;
 
 
     @ManyToMany(mappedBy = "equipments")
