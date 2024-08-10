@@ -81,9 +81,9 @@ public class TicketService {
         return ticketRepository.findByUser_Id(userId);
     }
 
-    public List<TicketOfSupport> getTicketsByTechnician(Long technicianId) {
-        return ticketRepository.findByTechnicienIT(technicianId);
-    }
+//    public List<TicketOfSupport> getTicketsByTechnician(Long technicianId) {
+//        return ticketRepository.findByTechnicienIT(technicianId);
+//    }
 
 }
 

@@ -4,6 +4,7 @@ import com.example.IT.support.App.Config.JwtAuth;
 import com.example.IT.support.App.Enum.Erole;
 import com.example.IT.support.App.Model.Person;
 import com.example.IT.support.App.Repository.PersoneRepository;
+import com.example.IT.support.App.Service.PersonneService;
 import com.example.IT.support.App.Service.UserService;
 import com.example.IT.support.App.dto.LoginPersonDto;
 import com.example.IT.support.App.dto.SingUpDto;
@@ -27,14 +28,9 @@ public class AuthoController {
     private PersoneRepository personeRepository;
 
     @Autowired
-    private UserService userService;
+    private PersonneService personneService;
 
 
-//    @PostMapping("/signup")
-//    public Person createUser(@RequestBody User user ) {
-//        System.out.println("username: " + user.getNom() + " password: " + user.getPassword());
-//        return userService.saveUser(user );
-//    }
 
     private Person authenticate(Person input) {
         authenticationManager.authenticate(
@@ -66,7 +62,7 @@ public class AuthoController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody SingUpDto singUpDto){
-        return ResponseEntity.ok(userService.register(singUpDto));
+        return ResponseEntity.ok(personneService.register(singUpDto));
     }
 
 

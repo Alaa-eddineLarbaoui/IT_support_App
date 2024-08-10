@@ -1,5 +1,6 @@
 package com.example.IT.support.App.Config;
 
+import com.example.IT.support.App.Enum.Erole;
 import com.example.IT.support.App.Repository.PersoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -42,6 +43,12 @@ public class SecurityConfig  {
                 .authorizeHttpRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
                                 .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/user/").permitAll()
+                                .requestMatchers("/admin/**").hasRole(String.valueOf(Erole.ADMIN))
+                                .requestMatchers("/user/**").hasRole(String.valueOf(Erole.USER))
+                                .requestMatchers("/tech/**").hasRole(String.valueOf(Erole.TECHNICIEN))
+
+
                                 .anyRequest().authenticated()
 
                 )

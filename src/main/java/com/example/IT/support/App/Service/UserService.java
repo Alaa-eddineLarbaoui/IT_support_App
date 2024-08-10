@@ -25,8 +25,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PersoneRepository repository;
+//    @Autowired
+//    private PersoneRepository repository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -34,8 +34,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow();
     }
 
     public User saveUser(User user) {
@@ -51,26 +51,26 @@ public class UserService {
     }
 
 
-    public String register(SingUpDto request) {
-        Person user = createUserByRole(request);
-        repository.save(user);
-        return "User signup";
-    }
-
-    private Person createUserByRole(SingUpDto request) {
-        String encodedPassword = passwordEncoder.encode(request.getPassword());
-
-        Person person = switch (request.getRole()) {
-            case ADMIN -> new Admin();
-            case TECHNICIEN -> new TechnicienIT();
-            default -> new User();
-        };
-
-        person.setUsername(request.getUsername());
-        person.setEmail(request.getEmail());
-        person.setPassword(encodedPassword);
-        person.setRole(request.getRole());
-
-        return person;
-    }
+//    public String register(SingUpDto request) {
+//        Person user = createUserByRole(request);
+//        repository.save(user);
+//        return "User signup";
+//    }
+//
+//    private Person createUserByRole(SingUpDto request) {
+//        String encodedPassword = passwordEncoder.encode(request.getPassword());
+//
+//        Person person = switch (request.getRole()) {
+//            case ADMIN -> new Admin();
+//            case TECHNICIEN -> new TechnicienIT();
+//            default -> new User();
+//        };
+//
+//        person.setUsername(request.getUsername());
+//        person.setEmail(request.getEmail());
+//        person.setPassword(encodedPassword);
+//        person.setRole(request.getRole());
+//
+//        return person;
+//    }
 }
