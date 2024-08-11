@@ -36,20 +36,15 @@ public class Equipement {
     @Column
     private String description;
 
-
-    @ManyToOne
-    @JoinColumn(name= "userId")
-    private User user;
-
-
-//    @OneToMany(mappedBy = "equipement")
-//    private List<Panne> pannes;
-
+//
+//    @ManyToOne
+//    @JsonIgnore
+//    @JoinColumn(name= "userId")
+//    private User user;
 
     @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TicketOfSupport> ticketOfSupports;
-
 
     @ManyToMany(mappedBy = "equipments")
     @JsonIgnore

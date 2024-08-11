@@ -25,8 +25,8 @@ public class User extends Person{
     @JsonIgnore
     private List<TicketOfSupport> ticketOfSupports;
 
-    @OneToMany
-    private List<Equipement> equipements;
+//    @OneToMany
+//    private List<Equipement> equipements;
 
 
 
