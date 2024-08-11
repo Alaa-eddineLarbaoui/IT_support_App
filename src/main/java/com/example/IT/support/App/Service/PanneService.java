@@ -1,13 +1,18 @@
 package com.example.IT.support.App.Service;
 
+import com.example.IT.support.App.Enum.EtatPanne;
 import com.example.IT.support.App.Model.Equipement;
 import com.example.IT.support.App.Model.Panne;
 import com.example.IT.support.App.Repository.EquipementRepository;
 import com.example.IT.support.App.Repository.PanneRepository;
 import com.example.IT.support.App.Repository.PersoneRepository;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -23,7 +28,7 @@ public class PanneService {
 
 
 
-    public Panne enregistrerPanne(Long equipementId, Panne panne) {
+    public Panne registrePanne(Long equipementId, Panne panne) {
         Equipement equipement = equipementRepository.findById(equipementId).orElse(null);
         if (equipement == null) {
             throw new RuntimeException("Équipement non trouvé.");
@@ -43,8 +48,21 @@ public class PanneService {
         return panneRepository.findAll();
     }
 
+
     public Panne followStateRepair(Long panneId) {
         return panneRepository.findById(panneId).orElseThrow(() -> new RuntimeException("Failure not found."));
+
+    }
+    public Panne showpanne(Long id){
+        return panneRepository.findById(id).orElseThrow();
+    }
+
+    public Panne updatePanne (Long id , Panne panne){
+        Panne pn = showpanne(id);
+        pn.setComplaintDate(panne.getComplaintDate());
+        pn.setDescription(panne.getDescription());
+        pn.setEtatPanne(panne.getEtatPanne());
+        return panneRepository.save(pn);
     }
 
 

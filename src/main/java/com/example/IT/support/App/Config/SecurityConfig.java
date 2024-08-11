@@ -45,6 +45,7 @@ public class SecurityConfig  {
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/user/**").permitAll()
                                 .requestMatchers("/api/equipement/**").permitAll()
+                                .requestMatchers("/api/panne/**").permitAll()
                                 .requestMatchers("/admin/**").hasRole(String.valueOf(Erole.ADMIN))
                                 .requestMatchers("/user/**").hasRole(String.valueOf(Erole.USER))
                                 .requestMatchers("/tech/**").hasRole(String.valueOf(Erole.TECHNICIEN))
