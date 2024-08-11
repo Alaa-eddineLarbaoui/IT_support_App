@@ -78,12 +78,12 @@ public class TicketService {
 
 
     public List<TicketOfSupport> getTicketsByUser(Long userId) {
-        return ticketRepository.findByUser_Id(userId);
+        return ticketRepository.findTicketOfSupportByUser_Id(userId);
     }
 
-//    public List<TicketOfSupport> getTicketsByTechnician(Long technicianId) {
-//        return ticketRepository.findByTechnicienIT(technicianId);
-//    }
+    public List<TicketOfSupport> getTicketsByTechnician(Long technicianId) {
+        return ticketRepository.findTicketOfSupportByTechnicienIT_Id(technicianId);
+    }
 
 }
 

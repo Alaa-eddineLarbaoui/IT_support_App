@@ -1,9 +1,7 @@
 package com.example.IT.support.App.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +24,9 @@ public class User extends Person{
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<TicketOfSupport> ticketOfSupports;
+
+    @OneToMany
+    private List<Equipement> equipements;
 
 
 

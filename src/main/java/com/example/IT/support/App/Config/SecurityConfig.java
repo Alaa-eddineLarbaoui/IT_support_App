@@ -43,13 +43,17 @@ public class SecurityConfig  {
                 .authorizeHttpRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
                                 .requestMatchers("/api/auth/**").permitAll()
-                                .requestMatchers("/api/user/").permitAll()
+                                .requestMatchers("/api/user/**").permitAll()
                                 .requestMatchers("/admin/**").hasRole(String.valueOf(Erole.ADMIN))
                                 .requestMatchers("/user/**").hasRole(String.valueOf(Erole.USER))
                                 .requestMatchers("/tech/**").hasRole(String.valueOf(Erole.TECHNICIEN))
+                                .requestMatchers("/swagger-ui/**").permitAll()
+                                .requestMatchers("v3/api-docs/**").permitAll()
 
 
                                 .anyRequest().authenticated()
+                             //   .anyRequest().permitAll()
+
 
                 )
                 .formLogin(formLogin ->formLogin.disable());
