@@ -3,13 +3,9 @@ package com.example.IT.support.App.Controller;
 
 import com.example.IT.support.App.Model.User;
 import com.example.IT.support.App.Service.UserService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,10 +22,31 @@ public class UserController {
         return userService.getAllUsers();
 
     }
-    @GetMapping("{id}")
-    public User GetUserById(@PathVariable() Long id){
-        return userService.getUserById(id);
+    @GetMapping("getUser/{id}")
+    public User GetUserById(@PathVariable Long id){
+        return userService.getUser(id);
     }
 
+    @DeleteMapping("deleteUser/{id}")
+    public void deleteUser(@PathVariable Long id ){
+        userService.deleteUser(id);
+    }
 
+    @PutMapping("updateUser/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User user){
+        return  userService.updateUser(id,user);
+    }
+    @GetMapping("findByName")
+    public  User getByName(@RequestParam String name){
+        return userService.getUserByUsername(name);
+    }
+//@GetMapping("/search")
+//public ResponseEntity<User> getUsersByName(@RequestParam String name) {
+//    User users = userService.getUserByUsername(name);
+//    if (!users.isEmpty()) {
+//        return ResponseEntity.ok(users);
+//    } else {
+//        return ResponseEntity.noContent().build(); // 204 No Content si aucune correspondance n'est trouvée
+//    }
+//}
 }
