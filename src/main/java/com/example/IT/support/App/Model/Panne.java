@@ -24,14 +24,8 @@ public class Panne {
     private Long idPanne;
 
     @Column
-    private Date complaintDate;
+    private String Name;
 
-    @Column
-    private String description;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private EtatPanne etatPanne;
 
 //    @ManyToOne
 //    @JoinColumn(name = "equipement_id")

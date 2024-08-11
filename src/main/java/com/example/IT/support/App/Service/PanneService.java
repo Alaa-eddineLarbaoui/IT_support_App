@@ -28,12 +28,12 @@ public class PanneService {
 
 
 
-    public Panne registrePanne(Long equipementId, Panne panne) {
-        Equipement equipement = equipementRepository.findById(equipementId).orElse(null);
-        if (equipement == null) {
-            throw new RuntimeException("Équipement non trouvé.");
-        }
-       panne.setEquipments((Set<Equipement>) equipement);
+    public Panne registrePanne(Panne panne) {
+//        Equipement equipement = equipementRepository.findById(equipementId).orElse(null);
+//        if (equipement == null) {
+//            throw new RuntimeException("Équipement non trouvé.");
+//        }
+      // panne.setEquipments((Set<Equipement>) equipement);
         return panneRepository.save(panne);
     }
 
@@ -59,9 +59,8 @@ public class PanneService {
 
     public Panne updatePanne (Long id , Panne panne){
         Panne pn = showpanne(id);
-        pn.setComplaintDate(panne.getComplaintDate());
-        pn.setDescription(panne.getDescription());
-        pn.setEtatPanne(panne.getEtatPanne());
+        pn.setName(panne.getName());
+
         return panneRepository.save(pn);
     }
 

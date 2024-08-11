@@ -28,9 +28,9 @@ public class PanneController {
     }
 
 
-    @PostMapping("registre/{id}")
-    public Panne registerPanne(@PathVariable Long id, @RequestBody Panne panne){
-        return  panneService.registrePanne(id,panne);
+    @PostMapping("registre")
+    public Panne registerPanne(@RequestBody Panne panne){
+        return  panneService.registrePanne(panne);
     }
     @PutMapping("update/{id}")
     public Panne updatePanne(@PathVariable Long id, @RequestBody Panne panne){
