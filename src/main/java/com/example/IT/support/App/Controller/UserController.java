@@ -4,12 +4,12 @@ package com.example.IT.support.App.Controller;
 import com.example.IT.support.App.Model.User;
 import com.example.IT.support.App.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("api/user/")
 public class UserController {
 
