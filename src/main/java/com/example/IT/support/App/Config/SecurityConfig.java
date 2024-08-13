@@ -47,7 +47,8 @@ public class SecurityConfig  {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
-                                .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/auth/signup").hasRole(String.valueOf(Erole.ADMIN))
+                                .requestMatchers("/api/auth/login").permitAll()
                                 .requestMatchers("/api/user/**").hasRole(String.valueOf(Erole.ADMIN))
                                 .requestMatchers("/api/equipement/**").hasRole(String.valueOf(Erole.ADMIN))
                                 .requestMatchers("/api/panne/**").hasRole(String.valueOf(Erole.ADMIN))
