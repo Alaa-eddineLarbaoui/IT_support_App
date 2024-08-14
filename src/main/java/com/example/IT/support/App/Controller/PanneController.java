@@ -28,7 +28,7 @@ public class PanneController {
     }
 
 
-    @PostMapping("registre")
+    @PostMapping("add")
     public Panne registerPanne(@RequestBody Panne panne){
         return  panneService.registrePanne(panne);
     }

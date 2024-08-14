@@ -1,18 +1,12 @@
 package com.example.IT.support.App.Service;
 
 import com.example.IT.support.App.Enum.EtatTicket;
-import com.example.IT.support.App.Model.Panne;
-import com.example.IT.support.App.Model.TechnicienIT;
-import com.example.IT.support.App.Model.TicketOfSupport;
-import com.example.IT.support.App.Model.User;
-import com.example.IT.support.App.Repository.PanneRepository;
-import com.example.IT.support.App.Repository.TechnicienITRepository;
-import com.example.IT.support.App.Repository.TicketRepository;
-import com.example.IT.support.App.Repository.UserRepository;
+import com.example.IT.support.App.Enum.TypeEquipement;
+import com.example.IT.support.App.Model.*;
+import com.example.IT.support.App.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -25,22 +19,34 @@ public class TicketService {
     private UserRepository userRepository;
 
     @Autowired
+    private EquipementRepository equipementRepository;
+
+    @Autowired
     private PanneRepository panneRepository;
 
     @Autowired
     private TechnicienITRepository technicienITRepository;
 
+    @Autowired
+    private EquipementService equipementService;
 
 
-
-    public TicketOfSupport saveTicket(TicketOfSupport ticket) {
 //        Panne panne = panneRepository.findById(panneId)
 //                .orElseThrow(() -> new RuntimeException("Incident not found"));
 //        ticket.setPanne(panne);
-//       ticket.setUser(user);
-        ticket.setCreation_date(new Date());
-        ticket.setEtatTicket(EtatTicket.OPEN);
-        return ticketRepository.save(ticket);
+
+    public TicketOfSupport saveTicket(TicketOfSupport ticketOfSupport) {
+        Panne panne = panneRepository.findById(ticketOfSupport.getPanne().getIdPanne())
+                .orElseThrow();
+
+        Equipement equipment = equipementService.ShowEquipement(ticketOfSupport.getEquipement().getId());
+
+        User user = userRepository.findById(ticketOfSupport.getUser().getId()).orElseThrow();
+        ticketOfSupport.setPanne(panne);
+        ticketOfSupport.setEquipement(equipment);
+        ticketOfSupport.setEtatTicket(EtatTicket.OPEN);
+        ticketOfSupport.setUser(user);
+        return ticketRepository.save(ticketOfSupport);
     }
 
 

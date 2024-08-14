@@ -1,6 +1,5 @@
 package com.example.IT.support.App.Model;
 
-import com.example.IT.support.App.Enum.EquipementStatus;
 import com.example.IT.support.App.Enum.EtatTicket;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -41,10 +40,9 @@ public class TicketOfSupport {
     @JoinColumn(name = "technicien_id")
     private TechnicienIT technicienIT;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JoinColumn(name = "equipment_id")
-    private Equipement equipment;
+    @ManyToOne
+    @JoinColumn(name = "equipement_id")
+    private Equipement equipement;
 
 
     @ManyToOne

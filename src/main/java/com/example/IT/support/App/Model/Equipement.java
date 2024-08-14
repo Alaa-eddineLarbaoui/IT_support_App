@@ -2,6 +2,7 @@ package com.example.IT.support.App.Model;
 
 
 import com.example.IT.support.App.Enum.EquipementStatus;
+import com.example.IT.support.App.Enum.TypeEquipement;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,8 +26,9 @@ public class Equipement {
     private Long id;
     @Column
     private String name;
-    @Column
-    private String type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false, length = 225)
+    private TypeEquipement type;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -42,9 +44,10 @@ public class Equipement {
 //    @JoinColumn(name= "userId")
 //    private User user;
 
-    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "equipement", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TicketOfSupport> ticketOfSupports;
+
 
     @ManyToMany(mappedBy = "equipments")
     @JsonIgnore

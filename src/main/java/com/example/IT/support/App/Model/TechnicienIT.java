@@ -8,9 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
 
-import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -19,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @DiscriminatorValue("TECHNICIEN")
-public class TechnicienIT extends Person{
+public class TechnicienIT extends Person {
     @OneToMany(mappedBy = "technicienIT")
     @JsonIgnore
     private List<TicketOfSupport> ticketOfSupports;
