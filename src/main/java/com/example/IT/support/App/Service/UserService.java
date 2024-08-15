@@ -47,8 +47,7 @@ public class UserService {
     }
 
     public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found."));
+        return userRepository.findByUsername(username).get(0);
     }
 
 }

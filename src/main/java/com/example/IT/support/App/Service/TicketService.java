@@ -91,6 +91,10 @@ public class TicketService {
         return ticketRepository.findTicketOfSupportByTechnicienIT_Id(technicianId);
     }
 
+    public  List<TicketOfSupport> getall(){
+        return ticketRepository.findAll();
+    }
+
 }
 
 

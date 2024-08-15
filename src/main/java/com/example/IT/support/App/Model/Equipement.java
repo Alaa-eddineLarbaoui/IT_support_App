@@ -26,6 +26,7 @@ public class Equipement {
     private Long id;
     @Column
     private String name;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, length = 225)
     private TypeEquipement type;
@@ -33,6 +34,7 @@ public class Equipement {
     @Column
     @Enumerated(EnumType.STRING)
     private EquipementStatus status;
+
     @Column
     private Date purchase_Date;
     @Column

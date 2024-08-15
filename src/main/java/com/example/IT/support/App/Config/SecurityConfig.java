@@ -47,18 +47,20 @@ public class SecurityConfig  {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(expressionInterceptUrlRegistry ->
                         expressionInterceptUrlRegistry
-//                                .requestMatchers("/api/auth/signup").hasRole(String.valueOf(Erole.ADMIN))
-//                                .requestMatchers("/api/auth/login").permitAll()
-//                                .requestMatchers("/api/user/**").hasRole(String.valueOf(Erole.ADMIN))
+                                .requestMatchers("/api/auth/signup").hasRole(String.valueOf(Erole.ADMIN))
+                                .requestMatchers("/api/auth/login").permitAll()
+//                                .requestMatchers("api/ticket/**").hasRole(String.valueOf(Erole.ADMIN))
+                                .requestMatchers("/api/user/**").hasRole(String.valueOf(Erole.ADMIN))
 //                                .requestMatchers("/api/equipement/**").hasRole(String.valueOf(Erole.ADMIN))
-//                                .requestMatchers("/api/panne/**").hasRole(String.valueOf(Erole.ADMIN))
-//                                .requestMatchers(POST,"/tech/**").hasRole(String.valueOf(Erole.TECHNICIEN))
-//                                .requestMatchers("/swagger-ui/**").permitAll()
-//                                .requestMatchers("v3/api-docs/**").permitAll()
+                                .requestMatchers("/api/panne/getAll").permitAll()
+                                .requestMatchers("/api/equipement/getAll").permitAll()
+                                .requestMatchers(POST,"/tech/**").hasRole(String.valueOf(Erole.TECHNICIEN))
+                                .requestMatchers("/swagger-ui/**").permitAll()
+                                .requestMatchers("v3/api-docs/**").permitAll()
 
 
-//                                .anyRequest().authenticated()
-                               .anyRequest().permitAll()
+                                .anyRequest().authenticated()
+                            //   .anyRequest().permitAll()
 
 
                 );

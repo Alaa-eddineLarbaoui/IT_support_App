@@ -15,10 +15,10 @@ public class TechnicienController {
         @Autowired
         private TechnicienITService technicienITService;
 
-        @PostMapping("/register")
-        public TechnicienIT registerTechnicien(@RequestBody TechnicienIT technicienIT) {
-            return technicienITService.registerTechnicien(technicienIT);
-        }
+//        @PostMapping("/register")
+//        public TechnicienIT registerTechnicien(@RequestBody TechnicienIT technicienIT) {
+//            return technicienITService.registerTechnicien(technicienIT);
+//        }
 
         @GetMapping("/all")
         public List<TechnicienIT> getAllTechniciens() {
@@ -30,15 +30,15 @@ public class TechnicienController {
             return technicienITService.ShowTechnicienById(id);
         }
 
-        @PutMapping("/update/{id}")
-        public TechnicienIT updateTechnicien(@PathVariable Long id, @RequestBody TechnicienIT technicienIT) {
-            return technicienITService.updateTechnicien(id, technicienIT);
-        }
+//        @PutMapping("/update/{id}")
+//        public TechnicienIT updateTechnicien(@PathVariable Long id, @RequestBody TechnicienIT technicienIT) {
+//            return technicienITService.updateTechnicien(id, technicienIT);
+//        }
 
-        @DeleteMapping("/delete/{id}")
-        public void deleteTechnicien(@PathVariable Long id) {
-            technicienITService.deleteTechnicien(id);
-        }
+//        @DeleteMapping("/delete/{id}")
+//        public void deleteTechnicien(@PathVariable Long id) {
+//            technicienITService.deleteTechnicien(id);
+//        }
     }
 
 

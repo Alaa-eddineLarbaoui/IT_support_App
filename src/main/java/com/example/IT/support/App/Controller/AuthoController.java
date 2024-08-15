@@ -57,6 +57,8 @@ public class AuthoController {
         Map<String, String> response = new HashMap<>();
         System.out.println("tttttttttttttttttttttttttt");
         response.put("token", token);
+        response.put("role",role.name());
+        response.put("id",person1.getId().toString());
         return ResponseEntity.ok(response);
     }
 
