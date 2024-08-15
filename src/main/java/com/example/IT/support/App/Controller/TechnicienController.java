@@ -27,18 +27,18 @@ public class TechnicienController {
 
         @GetMapping("/get/{id}")
         public TechnicienIT showTechnicienById(@PathVariable Long id) {
-            return technicienITService.ShowTechnicienById(id);
+            return technicienITService.showTechnicienById(id);
         }
 
-//        @PutMapping("/update/{id}")
-//        public TechnicienIT updateTechnicien(@PathVariable Long id, @RequestBody TechnicienIT technicienIT) {
-//            return technicienITService.updateTechnicien(id, technicienIT);
-//        }
+        @PutMapping("/update/{id}")
+        public TechnicienIT updateTechnicien(@PathVariable Long id, @RequestBody TechnicienIT technicienIT) {
+            return technicienITService.updateTechnicien(id, technicienIT);
+        }
 
-//        @DeleteMapping("/delete/{id}")
-//        public void deleteTechnicien(@PathVariable Long id) {
-//            technicienITService.deleteTechnicien(id);
-//        }
+        @DeleteMapping("/delete/{id}")
+        public void deleteTechnicien(@PathVariable Long id) {
+            technicienITService.deleteTechnicien(id);
+        }
     }
 
 

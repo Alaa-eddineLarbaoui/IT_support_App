@@ -1,5 +1,6 @@
 package com.example.IT.support.App.Service;
 
+import com.example.IT.support.App.Exceptions.TechnicienNotFoundException;
 import com.example.IT.support.App.Model.TechnicienIT;
 import com.example.IT.support.App.Repository.TechnicienITRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class TechnicienITService {
         return technicienITRepository.findAll();
     }
 
-    public TechnicienIT ShowTechnicienById(Long id) {
+    public TechnicienIT showTechnicienById(Long id) {
         return technicienITRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Technicien not found"));
+                .orElseThrow(TechnicienNotFoundException::new);
     }
 
     public TechnicienIT updateTechnicien(Long idTech, TechnicienIT updatedTechnicien) {
-        TechnicienIT technicien =ShowTechnicienById(idTech);
+        TechnicienIT technicien =showTechnicienById(idTech);
             technicien.setUsername(updatedTechnicien.getUsername());
             technicien.setEmail(updatedTechnicien.getEmail());
             technicien.setPassword(updatedTechnicien.getPassword());

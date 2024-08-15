@@ -1,6 +1,7 @@
 package com.example.IT.support.App.Service;
 
 import com.example.IT.support.App.Enum.EtatPanne;
+import com.example.IT.support.App.Exceptions.PanneNotFoundException;
 import com.example.IT.support.App.Model.Equipement;
 import com.example.IT.support.App.Model.Panne;
 import com.example.IT.support.App.Repository.EquipementRepository;
@@ -49,13 +50,11 @@ public class PanneService {
     }
 
 
-    public Panne followStateRepair(Long panneId) {
-        return panneRepository.findById(panneId).orElseThrow(() -> new RuntimeException("Failure not found."));
+    public Panne showpanne(Long id) {
+        return panneRepository.findById(id)
+                .orElseThrow(PanneNotFoundException::new);
+    }
 
-    }
-    public Panne showpanne(Long id){
-        return panneRepository.findById(id).orElseThrow();
-    }
 
     public Panne updatePanne (Long id , Panne panne){
         Panne pn = showpanne(id);

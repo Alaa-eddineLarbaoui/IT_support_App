@@ -18,30 +18,30 @@ public class EquipementController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("add")
     public Equipement addEvenement(@RequestBody Equipement equipement){
-        return equipementService.AddEquipement(equipement);
+        return equipementService.addEquipement(equipement);
     }
 
     @GetMapping("getAll")
     public List<Equipement> showAllEqui(){
-        return equipementService.ShowAll();
+        return equipementService.showAll();
 
     }
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("get/{id}")
     public Equipement getEquibyId(@PathVariable Long id){
-        return equipementService.ShowEquipement(id);
+        return equipementService.showEquipement(id);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("delete/{id}")
     public void DeleteEquipement(@PathVariable Long id ){
-        equipementService.DeleteEquipement(id);
+        equipementService.deleteEquipement(id);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("update/{id}")
     public Equipement updateUser(@PathVariable Long id, @RequestBody Equipement equipement){
-        return  equipementService.UpdateEqui(id,equipement);
+        return  equipementService.updateEqui(id,equipement);
     }
 
 }

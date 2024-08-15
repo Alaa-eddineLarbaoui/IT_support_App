@@ -1,13 +1,11 @@
 package com.example.IT.support.App.Service;
 
 import com.example.IT.support.App.Enum.EtatTicket;
-import com.example.IT.support.App.Enum.TypeEquipement;
 import com.example.IT.support.App.Model.*;
 import com.example.IT.support.App.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -39,7 +37,7 @@ public class TicketService {
         Panne panne = panneRepository.findById(ticketOfSupport.getPanne().getIdPanne())
                 .orElseThrow();
 
-        Equipement equipment = equipementService.ShowEquipement(ticketOfSupport.getEquipement().getId());
+        Equipement equipment = equipementService.showEquipement(ticketOfSupport.getEquipement().getId());
 
         User user = userRepository.findById(ticketOfSupport.getUser().getId()).orElseThrow();
         ticketOfSupport.setPanne(panne);

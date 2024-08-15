@@ -1,5 +1,6 @@
 package com.example.IT.support.App.Service;
 
+import com.example.IT.support.App.Exceptions.UserNotFoundException;
 import com.example.IT.support.App.Model.User;
 import com.example.IT.support.App.Repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -26,8 +27,10 @@ public class UserService {
     }
 
     public User getUser(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found."));
+        return userRepository.findById(id)
+                .orElseThrow(UserNotFoundException::new);
     }
+
 
     public User saveUser(User user) {
         return userRepository.save(user);
