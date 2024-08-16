@@ -1,6 +1,7 @@
 package com.example.IT.support.App.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -18,7 +19,8 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("TECHNICIEN")
 public class TechnicienIT extends Person {
-    @OneToMany(mappedBy = "technicienIT")
+
+    @OneToMany(mappedBy = "technicienIT", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TicketOfSupport> ticketOfSupports;
 

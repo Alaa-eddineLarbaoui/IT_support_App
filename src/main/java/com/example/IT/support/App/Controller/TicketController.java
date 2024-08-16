@@ -5,6 +5,7 @@ import com.example.IT.support.App.Model.TicketOfSupport;
 import com.example.IT.support.App.Service.TicketService;
 import com.example.IT.support.App.Service.UserService;
 
+import com.example.IT.support.App.dto.TicketDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
@@ -25,9 +26,9 @@ public class TicketController {
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("add_tickets")
-    public ResponseEntity<TicketOfSupport> addTicket(@RequestBody TicketOfSupport supportTicket) {
-        TicketOfSupport newTicket = ticketService.saveTicket(supportTicket);
-        return ResponseEntity.ok(newTicket);
+    public String addTicket(@RequestBody TicketDto supportTicket) {
+        ticketService.saveTicket(supportTicket);
+        return "the ticket added !";
     }
     @GetMapping("ofUser/{userId}")
     public List<TicketOfSupport> getTicketsByUser(@PathVariable Long userId) {

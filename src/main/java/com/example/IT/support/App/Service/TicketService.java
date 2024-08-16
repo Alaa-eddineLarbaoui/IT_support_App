@@ -3,6 +3,7 @@ package com.example.IT.support.App.Service;
 import com.example.IT.support.App.Enum.EtatTicket;
 import com.example.IT.support.App.Model.*;
 import com.example.IT.support.App.Repository.*;
+import com.example.IT.support.App.dto.TicketDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,13 +34,14 @@ public class TicketService {
 //                .orElseThrow(() -> new RuntimeException("Incident not found"));
 //        ticket.setPanne(panne);
 
-    public TicketOfSupport saveTicket(TicketOfSupport ticketOfSupport) {
-        Panne panne = panneRepository.findById(ticketOfSupport.getPanne().getIdPanne())
+    public TicketOfSupport saveTicket(TicketDto ticketDto) {
+        Panne panne = panneRepository.findById(ticketDto.getPanne_id())
                 .orElseThrow();
 
-        Equipement equipment = equipementService.showEquipement(ticketOfSupport.getEquipement().getId());
+        Equipement equipment = equipementService.showEquipement(ticketDto.getEquipement_id());
 
-        User user = userRepository.findById(ticketOfSupport.getUser().getId()).orElseThrow();
+        User user = userRepository.findById(ticketDto.getUser_id()).orElseThrow();
+        TicketOfSupport ticketOfSupport = new TicketOfSupport();
         ticketOfSupport.setPanne(panne);
         ticketOfSupport.setEquipement(equipment);
         ticketOfSupport.setEtatTicket(EtatTicket.OPEN);

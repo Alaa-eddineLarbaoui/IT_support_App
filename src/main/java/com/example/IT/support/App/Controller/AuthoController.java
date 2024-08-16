@@ -6,6 +6,7 @@ import com.example.IT.support.App.Model.Person;
 import com.example.IT.support.App.Repository.PersoneRepository;
 import com.example.IT.support.App.Service.PersonneService;
 import com.example.IT.support.App.Service.UserService;
+import com.example.IT.support.App.dto.JwtDto;
 import com.example.IT.support.App.dto.LoginPersonDto;
 import com.example.IT.support.App.dto.SingUpDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class AuthoController {
         return personeRepository.findByUsername(input.getUsername());
     }
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginPersonDto loginPersonDto) {
+    public JwtDto login(@RequestBody LoginPersonDto loginPersonDto) {
         System.out.println("eeeeeeeeeeeeeeeee");
 
         authenticationManager.authenticate(
@@ -52,14 +53,9 @@ public class AuthoController {
         System.out.println("rrrrrrrrrrrrrrrrrrrrrr");
         Person person1 = personeRepository.findByUsername(loginPersonDto.getUsername());
         Erole role= person1.getRole();
+        long userId = person1.getId();
         String token = JwtAuth.generateToken(loginPersonDto.getUsername(),role);
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        Map<String, String> response = new HashMap<>();
-        System.out.println("tttttttttttttttttttttttttt");
-        response.put("token", token);
-        response.put("role",role.name());
-        response.put("id",person1.getId().toString());
-        return ResponseEntity.ok(response);
+        return new JwtDto(userId , token);
     }
 
     @PostMapping("/signup")

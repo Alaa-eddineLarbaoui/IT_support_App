@@ -31,7 +31,7 @@ public class Panne {
 //    @JoinColumn(name = "equipement_id")
 //    private Equipement equipement;
 
-    @OneToMany(mappedBy = "panne")
+    @OneToMany(mappedBy = "panne", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TicketOfSupport> ticketsOfSupport;
 

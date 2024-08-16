@@ -21,7 +21,7 @@ public class User extends Person{
     @OneToMany
     private  List<Panne> pannes;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<TicketOfSupport> ticketOfSupports;
 
