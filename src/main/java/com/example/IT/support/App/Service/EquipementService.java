@@ -10,39 +10,63 @@ import java.util.List;
 
 @Service
 public class EquipementService {
+
     @Autowired
     private EquipementRepository equipementRepository;
 
-
-    public Equipement addEquipement (Equipement equipement){
+    /**
+     * Ajouter un nouvel équipement dans la base de données.
+     * @param equipement L'équipement à ajouter.
+     * @return L'équipement ajouté.
+     */
+    public Equipement addEquipement(Equipement equipement) {
         return equipementRepository.save(equipement);
-
     }
 
-    public void deleteEquipement (Long equipementId){
-        var test = equipementRepository.findById( equipementId).get();
-        equipementRepository.delete(test);
-
+    /**
+     * Supprimer un équipement par son ID.
+     * @param equipementId L'ID de l'équipement à supprimer.
+     * @throws EquipementNotFoundException si l'équipement n'existe pas.
+     */
+    public void deleteEquipement(Long equipementId) {
+        var equipement = equipementRepository.findById(equipementId)
+                .orElseThrow(EquipementNotFoundException::new);
+        equipementRepository.delete(equipement);
     }
 
-    public List<Equipement> showAll(){
+    /**
+     * Récupérer la liste de tous les équipements.
+     * @return Liste des équipements.
+     */
+    public List<Equipement> showAll() {
         return equipementRepository.findAll();
     }
 
-
-    public Equipement showEquipement ( Long equipementId){
-        return equipementRepository.findById(equipementId).orElseThrow(EquipementNotFoundException::new);
+    /**
+     * Récupérer les détails d'un équipement par son ID.
+     * @param equipementId L'ID de l'équipement.
+     * @return L'équipement correspondant.
+     * @throws EquipementNotFoundException si l'équipement n'existe pas.
+     */
+    public Equipement showEquipement(Long equipementId) {
+        return equipementRepository.findById(equipementId)
+                .orElseThrow(EquipementNotFoundException::new);
     }
 
-
-    public Equipement updateEqui(Long equipementId,Equipement equipement){
-        Equipement equip =showEquipement(equipementId);
-        equip.setName(equipement.getName());
-        equip.setType(equipement.getType());
-        equip.setStatus(equipement.getStatus());
-        equip.setPurchase_Date(equipement.getPurchase_Date());
-        equip.setDescription(equipement.getDescription());
-
-        return equipementRepository.save(equip);
+    /**
+     * Mettre à jour les détails d'un équipement existant.
+     * @param equipementId L'ID de l'équipement à mettre à jour.
+     * @param equipement Les nouvelles informations de l'équipement.
+     * @return L'équipement mis à jour.
+     * @throws EquipementNotFoundException si l'équipement n'existe pas.
+     */
+    public Equipement updateEqui(Long equipementId, Equipement equipement) {
+        Equipement existingEquipement = showEquipement(equipementId);
+        existingEquipement.setName(equipement.getName());
+        existingEquipement.setType(equipement.getType());
+        existingEquipement.setStatus(equipement.getStatus());
+        existingEquipement.setPurchase_Date(equipement.getPurchase_Date());
+        existingEquipement.setDescription(equipement.getDescription());
+        return equipementRepository.save(existingEquipement);
     }
 }
