@@ -20,8 +20,12 @@ public class UserController {
     /**
      * Service pour gérer la logique métier des utilisateurs.
      */
-    @Autowired // Injection automatique du service UserService
-    private UserService userService;
+    // Injection automatique du service UserService
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * Récupère tous les utilisateurs.

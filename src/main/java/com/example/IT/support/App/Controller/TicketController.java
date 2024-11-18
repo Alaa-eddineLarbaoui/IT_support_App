@@ -26,14 +26,19 @@ public class TicketController {
     /**
      * Service pour gérer la logique métier des tickets.
      */
-    @Autowired // Injection automatique du service TicketService
-    private TicketService ticketService;
+    // Injection automatique du service TicketService
+    private final TicketService ticketService;
 
     /**
      * Service pour gérer la logique métier des utilisateurs.
      */
-    @Autowired // Injection automatique du service UserService
-    private UserService userService;
+    // Injection automatique du service UserService
+    private final UserService userService;
+
+    public TicketController(TicketService ticketService, UserService userService) {
+        this.ticketService = ticketService;
+        this.userService = userService;
+    }
 
     /**
      * Ajoute un nouveau ticket de support.

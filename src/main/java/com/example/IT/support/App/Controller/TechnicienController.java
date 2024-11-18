@@ -11,8 +11,11 @@ import java.util.List;
 @RequestMapping("api/Tech")
 public class TechnicienController {
 
-    @Autowired
-    private TechnicienITService technicienITService;
+    private final TechnicienITService technicienITService;
+
+    public TechnicienController(TechnicienITService technicienITService) {
+        this.technicienITService = technicienITService;
+    }
 
 //        @PostMapping("/register")
 //        public TechnicienIT registerTechnicien(@RequestBody TechnicienIT technicienIT) {
