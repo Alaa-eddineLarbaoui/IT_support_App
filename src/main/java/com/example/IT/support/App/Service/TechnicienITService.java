@@ -14,8 +14,11 @@ import java.util.List;
 @Service
 public class TechnicienITService {
 
-    @Autowired
-    private TechnicienITRepository technicienITRepository;
+    private final TechnicienITRepository technicienITRepository;
+
+    public TechnicienITService(TechnicienITRepository technicienITRepository) {
+        this.technicienITRepository = technicienITRepository;
+    }
 
     /**
      * Enregistrer un nouveau technicien IT dans la base de données.

@@ -11,23 +11,26 @@ import java.util.List;
 
 @Service
 public class TicketService {
-    @Autowired
-    private TicketRepository ticketRepository;
+    private final TicketRepository ticketRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private EquipementRepository equipementRepository;
+    private final EquipementRepository equipementRepository;
 
-    @Autowired
-    private PanneRepository panneRepository;
+    private final PanneRepository panneRepository;
 
-    @Autowired
-    private TechnicienITRepository technicienITRepository;
+    private final TechnicienITRepository technicienITRepository;
 
-    @Autowired
-    private EquipementService equipementService;
+    private final EquipementService equipementService;
+
+    public TicketService(TicketRepository ticketRepository, UserRepository userRepository, EquipementRepository equipementRepository, PanneRepository panneRepository, TechnicienITRepository technicienITRepository, EquipementService equipementService) {
+        this.ticketRepository = ticketRepository;
+        this.userRepository = userRepository;
+        this.equipementRepository = equipementRepository;
+        this.panneRepository = panneRepository;
+        this.technicienITRepository = technicienITRepository;
+        this.equipementService = equipementService;
+    }
 
 
 //        Panne panne = panneRepository.findById(panneId)

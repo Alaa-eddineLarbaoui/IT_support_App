@@ -13,14 +13,17 @@ import java.util.List;
 @Service
 public class PanneService {
 
-    @Autowired
-    private PanneRepository panneRepository;
+    private final PanneRepository panneRepository;
 
-    @Autowired
-    private EquipementRepository equipementRepository;
+    private final EquipementRepository equipementRepository;
 
-    @Autowired
-    private PersoneRepository personeRepository;
+    private final PersoneRepository personeRepository;
+
+    public PanneService(PanneRepository panneRepository, EquipementRepository equipementRepository, PersoneRepository personeRepository) {
+        this.panneRepository = panneRepository;
+        this.equipementRepository = equipementRepository;
+        this.personeRepository = personeRepository;
+    }
 
     /**
      * Enregistrer une nouvelle panne dans la base de données.

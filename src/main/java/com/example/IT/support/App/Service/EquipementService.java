@@ -11,8 +11,11 @@ import java.util.List;
 @Service
 public class EquipementService {
 
-    @Autowired
-    private EquipementRepository equipementRepository;
+    private final EquipementRepository equipementRepository;
+
+    public EquipementService(EquipementRepository equipementRepository) {
+        this.equipementRepository = equipementRepository;
+    }
 
     /**
      * Ajouter un nouvel équipement dans la base de données.
