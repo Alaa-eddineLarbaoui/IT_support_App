@@ -13,8 +13,12 @@ import java.util.List;
 public class EquipementController {
 
 
-    @Autowired
-    private EquipementService equipementService;
+    private final EquipementService equipementService;
+
+    public EquipementController(EquipementService equipementService) {
+        this.equipementService = equipementService;
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("add")
     public Equipement addEvenement(@RequestBody Equipement equipement){

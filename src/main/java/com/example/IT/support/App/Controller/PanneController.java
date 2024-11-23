@@ -15,8 +15,11 @@ import java.util.List;
 @RequestMapping("api/panne/")
 public class PanneController {
 
-    @Autowired
-    private PanneService panneService;
+    private final PanneService panneService;
+
+    public PanneController(PanneService panneService) {
+        this.panneService = panneService;
+    }
 
 
     @GetMapping("getAll")

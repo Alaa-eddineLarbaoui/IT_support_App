@@ -23,14 +23,16 @@ import java.util.Map;
 @RequestMapping("/api/auth")
 public class AuthoController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private PersoneRepository personeRepository;
+    private final AuthenticationManager authenticationManager;
+    private final PersoneRepository personeRepository;
 
-    @Autowired
-    private PersonneService personneService;
+    private final PersonneService personneService;
 
+    public AuthoController(AuthenticationManager authenticationManager, PersoneRepository personeRepository, PersonneService personneService) {
+        this.authenticationManager = authenticationManager;
+        this.personeRepository = personeRepository;
+        this.personneService = personneService;
+    }
 
 
     private Person authenticate(Person input) {
