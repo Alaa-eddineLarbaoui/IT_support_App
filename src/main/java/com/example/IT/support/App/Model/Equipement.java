@@ -40,11 +40,7 @@ public class Equipement {
     @Column
     private String description;
 
-//
-//    @ManyToOne
-//    @JsonIgnore
-//    @JoinColumn(name= "userId")
-//    private User user;
+
 
     @OneToMany(mappedBy = "equipement", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
@@ -55,5 +51,10 @@ public class Equipement {
     @JsonIgnore
     private Set<Panne> pannes = new HashSet<>();
 
+//
+//    @ManyToOne
+//    @JsonIgnore
+//    @JoinColumn(name= "userId")
+//    private User user;
 
 }
