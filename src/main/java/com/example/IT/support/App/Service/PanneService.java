@@ -36,6 +36,7 @@ public class PanneService {
         //     throw new RuntimeException("Équipement non trouvé.");
         // }
         // panne.setEquipments((Set<Equipement>) equipement);
+
         return panneRepository.save(panne);
     }
 
