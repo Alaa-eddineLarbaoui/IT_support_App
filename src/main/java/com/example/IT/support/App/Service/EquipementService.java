@@ -44,19 +44,7 @@ public class EquipementService {
     public List<Equipement> showAll() {
         return equipementRepository.findAll();
     }
-
-    /**
-     * Récupérer les détails d'un équipement par son ID.
-     * @param equipementId L'ID de l'équipement.
-     * @return L'équipement correspondant.
-     * @throws EquipementNotFoundException si l'équipement n'existe pas.
-     */
-    public Equipement showEquipement(Long equipementId) {
-        return equipementRepository.findById(equipementId)
-                .orElseThrow(EquipementNotFoundException::new);
-    }
-
-    /**
+     /**
      * Mettre à jour les détails d'un équipement existant.
      * @param equipementId L'ID de l'équipement à mettre à jour.
      * @param equipement Les nouvelles informations de l'équipement.
@@ -72,4 +60,17 @@ public class EquipementService {
         existingEquipement.setDescription(equipement.getDescription());
         return equipementRepository.save(existingEquipement);
     }
+
+    /**
+     * Récupérer les détails d'un équipement par son ID.
+     * @param equipementId L'ID de l'équipement.
+     * @return L'équipement correspondant.
+     * @throws EquipementNotFoundException si l'équipement n'existe pas.
+     */
+    public Equipement showEquipement(Long equipementId) {
+        return equipementRepository.findById(equipementId)
+                .orElseThrow(EquipementNotFoundException::new);
+    }
+
+   
 }
