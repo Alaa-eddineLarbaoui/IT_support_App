@@ -40,13 +40,7 @@ public class PanneService {
         return panneRepository.save(panne);
     }
 
-    /**
-     * Supprimer une panne par son ID.
-     * @param panneId L'ID de la panne à supprimer.
-     */
-    public void deletePanne(Long panneId) {
-        panneRepository.deleteById(panneId);
-    }
+   
 
     /**
      * Récupérer la liste de toutes les pannes.
@@ -78,5 +72,12 @@ public class PanneService {
         Panne existingPanne = showpanne(id);
         existingPanne.setName(panne.getName());
         return panneRepository.save(existingPanne);
+    }
+     /**
+     * Supprimer une panne par son ID.
+     * @param panneId L'ID de la panne à supprimer.
+     */
+    public void deletePanne(Long panneId) {
+        panneRepository.deleteById(panneId);
     }
 }
